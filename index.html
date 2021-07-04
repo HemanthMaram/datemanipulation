@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Date Dom</title>
+</head>
+<style>
+   *{
+      font-family: sans-serif;
+      align-content: center;
+      background-color: #303E47;
+      color: #fff;
+   }
+   body{
+      margin: 50px 380px;
+      font-size: x-small;
+   }
+   input{
+      width: 300px;
+      
+   }
+   button{
+      background-color: blue;
+      margin-left: 5px;
+      color: #fff;
+      border: 1px white;
+      padding: 3px;
+   }
+   p{
+      text-align: center;
+      margin-left: -120px;
+      color: #fff;
+   }
+
+</style>
+
+<body >
+
+
+
+</body>
+
+<script>
+   var datele = document.createElement('input');
+datele.setAttribute('type','Date');
+datele.setAttribute('id','data');
+var btn = document.createElement('button');
+btn.innerHTML="display date";
+btn.setAttribute('onclick','displaydate()');
+var div = document.createElement('div');
+div.setAttribute('id','res');
+function displaydate(){
+   document.getElementById('res').innerHTML=""
+   var input = document.getElementById('data').value;
+   console.log(input)
+  if( Date.parse(input)){
+     var inputdate = new Date(input)
+     console.log(inputdate);
+     let p =document.createElement('p')
+     p.innerHTML=` ${inputdate}`
+     var currentdate = new Date()
+     console.log(currentdate)
+
+     var millisec = parseInt(currentdate.getTime())-parseInt( inputdate.getTime())
+     console.log(millisec)
+     let p7 =document.createElement('p')
+     p7.innerHTML=`milliseconds ${millisec}`
+     var seconds = mathaction(millisec,1000);
+     console.log(seconds);
+     let p6 =document.createElement('p')
+     p6.innerHTML=`seconds ${seconds}`
+     var minutesdiff = mathaction(seconds,60);
+     console.log(minutesdiff);
+     let p5 =document.createElement('p')
+     p5.innerHTML=`minutes ${minutesdiff}`
+     var hoursdiff = mathaction(minutesdiff,60);
+     console.log(hoursdiff);
+     let p4=document.createElement('p')
+     p4.innerHTML=`hours ${hoursdiff}`
+     var daydiff = mathaction(hoursdiff,24);
+     console.log(daydiff);
+     let p3 =document.createElement('p')
+     p3.innerHTML=`days ${daydiff}`
+
+     
+
+     var monthdiff = mathaction(daydiff,30);
+     console.log(monthdiff);
+     let p2 =document.createElement('p')
+     p2.innerHTML=`month ${monthdiff}`
+     var yeardiff = yearaction(currentdate.getFullYear(),inputdate.getFullYear());
+     console.log(yeardiff);
+     let p1 =document.createElement('p')
+     p1.innerHTML=`year ${yeardiff}`
+     div.append(p,p1,p2,p3,p4,p5,p6,p7);
+     
+   
+  }
+  function mathaction(value1,value2){
+     return Math.floor(value1/value2);
+  }
+  function yearaction(value1,value2){
+     return value1-value2;
+  }
+
+}
+
+
+
+
+
+
+
+document.body.append(datele,btn,div);
+
+
+
+</script>
+</html>
